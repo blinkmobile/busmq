@@ -17,32 +17,28 @@
 
 6. SSH to EC2
 
-7.
+7. make a writable directory for new executables:
 
-    ```sh
     sudo mkdir -p /opt/bin
-    ```
 
-8.
+8. install docker-compose 1.7.1
 
-    ```sh
     sudo curl -o /opt/bin/docker-compose -L https://github.com/docker/compose/releases/download/1.7.1/docker-compose-`uname -s`-`uname -m`
-    ```
 
-9.
+9. make docker-compose executable
 
-    ```sh
     sudo chmod +x /opt/bin/docker-compose
-    ```
 
 10. tailor your ~/docker-compose.yml file
 
-    - setting `BUSMQ_SECRET` environment to a secret string
+    - set `BUSMQ_SECRET` environment to a secret string
 
-    - replacing "build: ." with "image: blinkmobile/busmq"
+    - replace "build: ." with "image: blinkmobile/busmq"
 
-    - deleting the "volumes:" section
+    - delete the "volumes:" section
 
 11. in home directory, `/opt/bin/docker-compose up --build -d`
 
+12. configure AWS Route53 Record Set to give a domain name to EC2
 
+13. HTTPS! figure this out by yourself!
