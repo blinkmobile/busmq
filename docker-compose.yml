@@ -1,0 +1,17 @@
+version: '2'
+services:
+  app:
+    build: .
+    ports:
+    - '3000:3000'
+    volumes:
+    - ./plugins:/app/plugins
+    - ./ecosystem.json:/app/ecosystem.json
+    - ./index.js:/app/index.js
+    depends_on:
+    - redis
+    environment:
+    - PORT=3000
+    - REDIS_PORT_6379_ADDR=redis
+  redis:
+    image: redis:3
