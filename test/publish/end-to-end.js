@@ -53,8 +53,41 @@ if (server.hasRedis()) {
     });
     fetch(`${origin}/publish/${TOPIC}`, {
       method: 'POST',
+      headers: {
+        Authorization: SECRET
+      },
       body: JSON.stringify(data)
     });
+  });
+
+  test('POST /publish without Authorization header', (t) => {
+    return fetch(`${origin}/publish/noauth`, {
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+      .then((res) => t.is(res.status, 401));
+  });
+
+  test('POST /publish with Authorization: blah', (t) => {
+    return fetch(`${origin}/publish/badauth`, {
+      method: 'POST',
+      headers: {
+        Authorization: 'blah'
+      },
+      body: JSON.stringify(data)
+    })
+      .then((res) => t.is(res.status, 403));
+  });
+
+  test(`POST /publish with Authorization: ${SECRET}`, (t) => {
+    return fetch(`${origin}/publish/goodauth`, {
+      method: 'POST',
+      headers: {
+        Authorization: SECRET
+      },
+      body: JSON.stringify(data)
+    })
+      .then((res) => t.is(res.status, 200));
   });
 } else {
   test('', () => {});

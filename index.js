@@ -28,11 +28,13 @@ const onPluginsRegistered = (err) => {
   server.start(onHapiStarted);
 };
 
-httpServer.listen(PORT, (err) => {
+const AUTH_NAME = 'auth-match-secret';
+const onAuthRegistered = (err) => {
   if (err) {
     throw err;
   }
-  server.log([], { msg: `HTTP service started on port ${PORT}` });
+
+  server.auth.strategy(AUTH_NAME, AUTH_NAME);
 
   server.register([
     {
@@ -59,8 +61,24 @@ httpServer.listen(PORT, (err) => {
           listener: httpServer
         }
       },
-      require('./plugins/publish/index.js')
+      {
+        register: require('./plugins/publish/index.js'),
+        options: {
+          auth: AUTH_NAME
+        }
+      }
     ] : []
   ), onPluginsRegistered);
+};
+
+/* entry point */
+
+httpServer.listen(PORT, (err) => {
+  if (err) {
+    throw err;
+  }
+  server.log([], { msg: `HTTP service started on port ${PORT}` });
+
+  server.register(require('./plugins/auth/index.js'), onAuthRegistered);
 });
 

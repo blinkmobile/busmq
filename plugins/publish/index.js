@@ -32,9 +32,11 @@ function handler (server, bus, pubsubs, request, reply) {
   return reply();
 }
 
-function register (server, options = {}, next) {
+function register (server, options, next) {
   const { bus } = server.plugins.bus;
   const pubsubs = new Map();
+
+  options = options || {};
 
   server.route({
     method: 'POST',
@@ -43,6 +45,7 @@ function register (server, options = {}, next) {
     // so hardwire our `server`, but expose expected fn (request, reply)
     handler: handler.bind(null, server, bus, pubsubs),
     config: {
+      auth: options.auth || false,
       payload: {
         output: 'data',
         parse: false
