@@ -10,14 +10,14 @@ const FED_PATH = require('../plugins/bus/index.js').FED_PATH;
 const PORT = 3002; // unique per test file
 const origin = server.getOrigin({ PORT });
 
-test.before(() => server.start({ PORT }));
-test.after(() => server.stop());
-
 const SECRET = process.env.BUSMQ_SECRET || 'mysecret';
 
 // https://github.com/blinkmobile/no-polling-example/blob/master/client/index.js
 
 if (server.hasRedis()) {
+  test.before(() => server.start({ PORT }));
+  test.after(() => server.stop());
+
   const BUS_URL = `${origin}${FED_PATH}`;
   const SUBJECT = __filename;
 
@@ -76,5 +76,6 @@ if (server.hasRedis()) {
     pubsub.publish(MSG);
   });
 } else {
+  console.warn('BusMQ tests skipped: no TEST_ORIGIN or REDIS_PORT_6379_ADDR');
   test('', () => {});
 }
