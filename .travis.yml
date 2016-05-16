@@ -5,8 +5,9 @@ sudo: false
 services:
   - redis-server
 env:
-  - CXX=g++-4.8
-  - REDIS_PORT_6379_ADDR=localhost
+  global:
+    - CXX=g++-4.8
+    - REDIS_PORT_6379_ADDR=localhost
 # need newer GCC for hiredis module
 addons:
   apt:
