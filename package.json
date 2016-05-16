@@ -4,8 +4,11 @@
   "description": "a minimal service exposing a federated BusMQ bus with publishing via HTTP",
   "main": "index.js",
   "scripts": {
+    "ava": "nyc --no-cache ava --no-cache",
     "eslint": "eslint --fix --cache .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "nyc": "nyc check-coverage --branches 50 --functions 80 --lines 80 --statements 80",
+    "posttest": "npm run eslint",
+    "test": "npm run ava && npm run nyc"
   },
   "repository": {
     "type": "git",
@@ -19,9 +22,17 @@
   },
   "homepage": "https://github.com/blinkmobile/busmq#readme",
   "devDependencies": {
+    "ava": "^0.14.0",
     "eslint": "^2.2.0",
     "eslint-config-standard": "^5.1.0",
     "eslint-plugin-promise": "^1.0.8",
-    "eslint-plugin-standard": "^1.3.2"
+    "eslint-plugin-standard": "^1.3.2",
+    "node-fetch": "^1.5.2",
+    "nyc": "^6.4.4"
+  },
+  "dependencies": {
+    "good": "7.0.0",
+    "good-console": "6.1.1",
+    "hapi": "13.4.0"
   }
 }
