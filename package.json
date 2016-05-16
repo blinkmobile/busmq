@@ -1,5 +1,5 @@
 {
-  "name": "busmq",
+  "name": "@blinkmobile/busmq",
   "version": "1.0.0",
   "description": "a minimal service exposing a federated BusMQ bus with publishing via HTTP",
   "main": "index.js",
