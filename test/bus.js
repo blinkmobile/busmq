@@ -1,11 +1,14 @@
 /* eslint-disable no-console */
 'use strict';
 
+// const { Server } = require('http');
+
 const Bus = require('busmq');
+// const sinon = require('sinon');
 const test = require('ava');
 
 const server = require('./helpers/server.js');
-const FED_PATH = require('../plugins/bus/index.js').FED_PATH;
+const { FED_PATH } = require('../plugins/bus/index.js');
 
 const PORT = 3002; // unique per test file
 const origin = server.getOrigin({ PORT });
@@ -79,3 +82,19 @@ if (server.hasRedis()) {
   console.warn('BusMQ tests skipped: no TEST_ORIGIN or REDIS_PORT_6379_ADDR');
   test('', () => {});
 }
+
+/* leave this test out for now */
+// test('plugin calls server.register() and next()', (t) => {
+//   const server = {
+//     expose: sinon.stub(),
+//     route: sinon.stub()
+//   };
+//   const next = sinon.stub();
+
+//   register(server, { listener: new Server() }, next);
+
+//   t.truthy(server.expose.calledOnce);
+//   t.truthy(server.route.calledOnce);
+//   t.truthy(next.calledOnce);
+// });
+

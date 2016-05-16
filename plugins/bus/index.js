@@ -8,7 +8,7 @@ const SECRET = process.env.BUSMQ_SECRET || 'mysecret';
 const REDIS_HOSTNAME = process.env.REDIS_PORT_6379_ADDR;
 const REDIS_PORT = process.env.REDIS_PORT_6379_TCP || 6379;
 
-function register (server, options, next) {
+function register (server, options = {}, next) {
   // https://github.com/blinkmobile/no-polling-example/blob/master/server/bus.js
   const bus = Bus.create({
     redis: `redis://${REDIS_HOSTNAME}:${REDIS_PORT}`,
