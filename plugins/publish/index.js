@@ -46,6 +46,7 @@ function register (server, options, next) {
     handler: handler.bind(null, server, bus, pubsubs),
     config: {
       auth: options.auth || false,
+      cors: true,
       payload: {
         output: 'data',
         parse: false
