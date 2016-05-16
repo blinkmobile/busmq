@@ -8,7 +8,9 @@
     "eslint": "eslint --fix --cache .",
     "nyc": "nyc check-coverage --branches 50 --functions 80 --lines 80 --statements 80",
     "posttest": "npm run eslint",
-    "test": "npm run ava && npm run nyc"
+    "start": "pm2 start ecosystem.json",
+    "stop": "pm2 stop ecosystem.json; pm2 kill",
+    "test": "npm run ava"
   },
   "repository": {
     "type": "git",
@@ -31,8 +33,10 @@
     "nyc": "^6.4.4"
   },
   "dependencies": {
+    "busmq": "1.5.4",
     "good": "7.0.0",
     "good-console": "6.1.1",
-    "hapi": "13.4.0"
+    "hapi": "13.4.0",
+    "pm2": "1.1.3"
   }
 }

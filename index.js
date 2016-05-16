@@ -50,6 +50,16 @@ httpServer.listen(PORT, (err) => {
         }
       }
     }
-  ], onPluginsRegistered);
+  ].concat(
+    // only load our Hapi plugins if Redis is available
+    process.env.REDIS_PORT_6379_ADDR ? [
+      {
+        register: require('./plugins/bus'),
+        options: {
+          listener: httpServer
+        }
+      }
+    ] : []
+  ), onPluginsRegistered);
 });
 

@@ -2,3 +2,7 @@ language: node_js
 node_js:
   - "6"
 sudo: false
+services:
+  - redis-server
+env:
+  - REDIS_PORT_6379_ADDR=localhost

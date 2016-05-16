@@ -1,28 +1,16 @@
+/* eslint-disable no-console */
 'use strict';
-
-const childProcess = require('child_process');
-// const path = require('path');
 
 const fetch = require('node-fetch');
 const test = require('ava');
 
-const PORT = 3001;
-const origin = `http://localhost:${PORT}`;
+const server = require('./helpers/server.js');
 
-let server;
+const PORT = 3001; // unique per test file
+const origin = server.getOrigin({ PORT });
 
-test.before.cb((t) => {
-  server = childProcess.fork('../index.js', {
-    env: { PORT }
-  });
-  setTimeout(t.end, 2e3);
-});
-
-test.after(() => {
-  if (server) {
-    server.kill();
-  }
-});
+test.before(() => server.start({ PORT }));
+test.after(() => server.stop());
 
 test('server started, no ECONNREFUSED error', () => fetch(origin));
 // rejects with a ECONNREFUSED error if something went wrong
