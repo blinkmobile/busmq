@@ -4,7 +4,7 @@ const http = require('http');
 
 const Hapi = require('hapi');
 
-const PORT = parseInt(process.env.PORT, 10) || 3000;
+const PORT = 3000;
 const httpServer = new http.Server();
 
 const server = new Hapi.Server();

@@ -12,7 +12,6 @@ services:
     depends_on:
     - redis
     environment:
-    - PORT=3000
     - REDIS_PORT_6379_ADDR=redis
   redis:
     image: redis:3
