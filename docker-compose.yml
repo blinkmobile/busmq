@@ -6,6 +6,7 @@ services:
     - '3000:3000'
     volumes:
     - ./plugins:/app/plugins
+    - ./public:/app/public
     - ./ecosystem.json:/app/ecosystem.json
     - ./index.js:/app/index.js
     depends_on:

@@ -6,16 +6,13 @@ const test = require('ava');
 
 const server = require('./helpers/server.js');
 
-const PORT = 3001; // unique per test file
+const PORT = 3003; // unique per test file
 const origin = server.getOrigin({ PORT });
 
 test.before(() => server.start({ PORT }));
 test.after(() => server.stop());
 
-test('server started, no ECONNREFUSED error', () => fetch(origin));
-// rejects with a ECONNREFUSED error if something went wrong
-
-test('GET / => 403', (t) => {
-  return fetch(origin)
-    .then((res) => t.is(res.status, 403));
+test('GET /.keep => 200', (t) => {
+  return fetch(`${origin}/.keep`)
+    .then((res) => t.is(res.status, 200));
 });

@@ -51,7 +51,9 @@ const onAuthRegistered = (err) => {
           }, 'stdout']
         }
       }
-    }
+    },
+    require('inert'),
+    require('./plugins/public/index.js')
   ].concat(
     // only load our Hapi plugins if Redis is available
     process.env.REDIS_PORT_6379_ADDR ? [

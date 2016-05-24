@@ -35,7 +35,9 @@
 
     - replace "build: ." with "image: blinkmobile/busmq"
 
-    - delete the "volumes:" section
+    - delete everything in "volumes:" section
+
+    - add a "volumes:" entry to mount something suitable to `/app/public`
 
 11. in home directory, `/opt/bin/docker-compose up --build -d`
 
