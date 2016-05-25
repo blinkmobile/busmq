@@ -5,8 +5,6 @@ const https = require('https');
 
 const Hapi = require('hapi');
 
-const { getAcmeResponder, getLEX } = require('./plugins/letsencrypt/index.js');
-
 const HTTP_PORT = parseInt(process.env.HTTP_PORT, 10) || 3000;
 const HTTPS_PORT = parseInt(process.env.HTTPS_PORT, 10) || 3443;
 
@@ -17,6 +15,7 @@ let httpServer;
 let httpsServer;
 if (process.env.LETSENCRYPT_DOMAIN) {
   // setup HTTPS with LetsEncrypt
+  const { getAcmeResponder, getLEX } = require('./plugins/letsencrypt/index.js');
   // https://github.com/Daplie/letsencrypt-hapi
   lex = getLEX();
   httpsServer = https.createServer(lex.httpsOptions);
