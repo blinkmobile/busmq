@@ -42,6 +42,11 @@ Specifies the shared secret required to connect. Defaults to "mysecret".
 We **highly recommend** that you customise this value for production use.
 
 
+### HTTP_PORT and HTTPS_PORT
+
+Specifies the ports to bind HTTP and HTTPS listeners to. Defaults to 3000 and 3443. Useful to change these for testing purposes.
+
+
 ### LETSENCRYPT_DOMAIN
 
 Specifies the domain name to register for a LetsEncrypt certificate. This will use the LetsEncrypt staging environment if NODE_ENV is not "production". If this is not set, then the web service will use unencrypted HTTP.

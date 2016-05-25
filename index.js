@@ -7,8 +7,8 @@ const Hapi = require('hapi');
 
 const { getAcmeResponder, getLEX } = require('./plugins/letsencrypt/index.js');
 
-const HTTP_PORT = 3000;
-const HTTPS_PORT = 3443;
+const HTTP_PORT = parseInt(process.env.HTTP_PORT, 10) || 3000;
+const HTTPS_PORT = parseInt(process.env.HTTPS_PORT, 10) || 3443;
 
 const server = new Hapi.Server();
 
@@ -28,7 +28,7 @@ if (process.env.LETSENCRYPT_DOMAIN) {
     res.end('<!-- Hello Developer Person! Please use HTTPS instead -->');
   })).listen(HTTP_PORT);
 } else {
-  // setup uncertified HTTPS
+  // setup a broken HTTPS listener, does not work
   httpsServer = https.createServer({});
   httpServer = http.createServer();
   // expose Hapi.js to HTTP, no redirect
