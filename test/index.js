@@ -6,7 +6,7 @@ const test = require('ava');
 
 const server = require('./helpers/server.js');
 
-const PORT = 3001; // unique per test file
+const PORT = 3002; // unique per test file
 const origin = server.getOrigin({ PORT });
 
 test.before(() => server.start({ PORT }));

@@ -2,11 +2,9 @@
   "apps": [
     {
       "exec_mode": "cluster",
-      "ignore_watch": ".git test node_modules",
       "instances": 0,
       "name": "busmq",
-      "script": "index.js",
-      "watch": true
+      "script": "index.js"
     }
   ]
 }

@@ -8,7 +8,7 @@ const busHelper = require('../helpers/bus.js');
 const server = require('../helpers/server.js');
 const { FED_PATH } = require('../../plugins/bus/index.js');
 
-const PORT = 3002; // unique per test file
+const PORT = 3008; // unique per test file
 const origin = server.getOrigin({ PORT });
 const SECRET = process.env.BUSMQ_SECRET || 'mysecret';
 

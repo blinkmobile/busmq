@@ -5,7 +5,13 @@ const childProcess = require('child_process');
 let server;
 
 function getOrigin ({ PORT }) {
-  return process.env.TEST_ORIGIN || `http://localhost:${PORT}`;
+  if (process.env.TEST_ORIGIN) {
+    return process.env.TEST_ORIGIN;
+  }
+  if (process.env.LETSENCRYPT_DOMAIN) {
+    return `https://localhost:${PORT}`;
+  }
+  return `http://localhost:${PORT + 1}`;
 }
 
 function hasRedis () {
@@ -18,7 +24,10 @@ function start ({ PORT }) {
   }
   return new Promise((resolve, reject) => {
     server = childProcess.fork('../index.js', {
-      env: { PORT }
+      env: {
+        HTTP_PORT: PORT + 1,
+        HTTPS_PORT: PORT
+      }
     });
     setTimeout(() => resolve(), 2e3);
   });
