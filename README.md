@@ -42,6 +42,21 @@ Specifies the shared secret required to connect. Defaults to "mysecret".
 We **highly recommend** that you customise this value for production use.
 
 
+### LETSENCRYPT_DOMAIN
+
+Specifies the domain name to register for a LetsEncrypt certificate. This will use the LetsEncrypt staging environment if NODE_ENV is not "production". If this is not set, then the web service will use unencrypted HTTP.
+
+
+### LETSENCRYPT_EMAIL
+
+Specifies a contact email address to register with LetsEncrypt.
+
+
+### NODE_ENV
+
+Set this to "production" to enable live production deployment features.
+
+
 ### REDIS_PORT_6379_ADDR
 
 Specifies the Redis hostname or IP address. No default. Mandatory.

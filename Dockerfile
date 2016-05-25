@@ -10,5 +10,6 @@ ADD plugins/ /app/plugins/
 ADD ecosystem.json index.js /app/
 
 EXPOSE 3000
+EXPOSE 3443
 
 CMD npm start -- --no-daemon
