@@ -2,6 +2,8 @@
 
 const Bus = require('busmq');
 
+const { systemMarcoPolo } = require('./system.marco.polo.js');
+
 const FED_PATH = '/bus/federated';
 const SECRET = process.env.BUSMQ_SECRET || 'mysecret';
 
@@ -21,6 +23,9 @@ function register (server, options = {}, next) {
   const onBusOnline = () => {
     server.log(['bus'], { msg: 'BusMQ service online...' });
     bus.removeListener('online', onBusOnline);
+
+    systemMarcoPolo(bus);
+
     next();
   };
   bus.on('online', onBusOnline);

@@ -31,6 +31,17 @@ Authorization: mysecret
 ```
 
 
+## BusMQ Publish / Subscribe Topics
+
+
+### system.marco.polo
+
+This service responds to "marco" messages with a "polo" message.
+We recommend that clients using this topic behave this way, too.
+
+This topic is useful for rough census and basic heart-beat functionality.
+
+
 ## Environment Variables
 
 For connection details, we follow Docker's [legacy container link](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/) conventions, instead of inventing our own approach.

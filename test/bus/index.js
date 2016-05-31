@@ -7,8 +7,8 @@ const Bus = require('busmq');
 // const sinon = require('sinon');
 const test = require('ava');
 
-const server = require('./helpers/server.js');
-const { FED_PATH } = require('../plugins/bus/index.js');
+const server = require('../helpers/server.js');
+const { FED_PATH } = require('../../plugins/bus/index.js');
 
 const PORT = 3004; // unique per test file
 const origin = server.getOrigin({ PORT });
