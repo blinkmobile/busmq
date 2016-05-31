@@ -94,7 +94,7 @@ const onAuthRegistered = (err) => {
       {
         register: require('./plugins/bus/index.js'),
         options: {
-          listener: httpsServer
+          listener: process.env.LETSENCRYPT_DOMAIN ? httpsServer : httpServer
         }
       },
       {
