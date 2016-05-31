@@ -1,7 +1,7 @@
 # Deployment
 
 
-## AWS
+## AWS (once per EC2)
 
 1. consult https://coreos.com/releases/
 
@@ -12,8 +12,6 @@
 4. consult https://coreos.com/os/docs/latest/booting-on-ec2.html for SSH details
 
 5. wait a few minutes for EC2 provisioning, status checks, etc
-
-5. copy [docker-compose.yml](../docker-compose.yml) to EC2 home directory
 
 6. SSH to EC2
 
@@ -29,9 +27,30 @@
 
     sudo chmod +x /opt/bin/docker-compose
 
-10. tailor your ~/docker-compose.yml file
+10. enable CoreOS' fleet system
+
+    sudo systemctl enable etcd2.service
+    sudo systemctl start etcd2.service
+
+    sudo systemctl enable fleet.service
+    sudo systemctl start fleet.service
+
+
+## BusMQ (once per version / update)
+
+1. copy [busmq.service](../busmq.service) to EC2 home directory
+
+2. tailor your ~/busmq.service file if necessary
+
+3. copy [docker-compose.yml](../docker-compose.yml) to EC2 home directory
+
+4. tailor your ~/docker-compose.yml file
 
     - set `BUSMQ_SECRET` environment to a secret string
+
+    - set `LETSENCRYPT_DOMAIN` and `LETSENCRYPT_EMAIL` environment for HTTPS
+
+    - set `NODE_ENV` to "production"
 
     - replace "build: ." with "image: blinkmobile/busmq"
 
@@ -39,8 +58,6 @@
 
     - add a "volumes:" entry to mount something suitable to `/app/public`
 
-11. in home directory, `/opt/bin/docker-compose up --build -d`
+5. in home directory, `fleet destroy busmq.service; fleet start busmq.service`
 
-12. configure AWS Route53 Record Set to give a domain name to EC2
-
-13. HTTPS! figure this out by yourself!
+6. configure AWS Route53 Record Set to give a domain name to EC2

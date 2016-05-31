@@ -1,0 +1,15 @@
+# https://coreos.com/fleet/docs/latest/launching-containers-fleet.html
+# systemd unit file for CoreOS' fleet
+
+[Unit]
+Description=BusMQ
+After=docker.service
+Requires=docker.service
+
+[Service]
+ExecStartPre=/opt/bin/docker-compose stop
+ExecStart=/opt/bin/docker-compose up --build
+ExecStop=/opt/bin/docker-compose stop
+Restart=always
+TimeoutStartSec=0
+WorkingDirectory=/home/core
