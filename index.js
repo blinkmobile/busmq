@@ -86,6 +86,36 @@ const onAuthRegistered = (err) => {
       }
     },
     require('inert'),
+    {
+      register: require('hapi-and-healthy'),
+      options: {
+        env: process.env.NODE_ENV || 'development',
+        // path: '/service-status',
+        test: {
+          features: [
+            // check features and dependencies
+            (cb) => {
+              const { bus } = server.plugins.bus;
+              if (bus && bus.isOnline()) {
+                cb();
+              } else {
+                cb(new Error('BusMQ offline'));
+              }
+            }
+          ],
+          node: [
+            // check just this node for health, not DBs, etc
+            (cb) => {
+              if (server.plugins.bus.bus) {
+                cb();
+              } else {
+                cb(new Error('BusMQ plugin not ready'));
+              }
+            }
+          ]
+        }
+      }
+    },
     require('./plugins/public/index.js')
   ].concat(
 

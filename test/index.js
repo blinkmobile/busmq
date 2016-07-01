@@ -19,3 +19,10 @@ test('GET / => 403', (t) => {
   return fetch(origin)
     .then((res) => t.is(res.status, 403));
 });
+
+if (server.hasRedis()) {
+  test('GET /service-status => 200', (t) => {
+    return fetch(`${origin}/service-status`)
+      .then((res) => t.is(res.status, 200));
+  });
+}

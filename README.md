@@ -29,6 +29,13 @@ Authorization: mysecret
 ```
 
 
+### GET /service-status
+
+See upstream [hapi-and-healthy](https://github.com/atomantic/hapi-and-healthy).
+
+No authentication required.
+
+
 ## BusMQ Publish / Subscribe Topics
 
 
