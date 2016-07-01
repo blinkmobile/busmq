@@ -1,17 +1,18 @@
 language: node_js
 node_js:
-  - "6"
+  - '6'
 sudo: false
 services:
   - redis-server
 env:
   global:
     - CXX=g++-4.8
-#    - REDIS_PORT_6379_ADDR=localhost
-# need newer GCC for hiredis module
 addons:
   apt:
     sources:
-    - ubuntu-toolchain-r-test
+      - ubuntu-toolchain-r-test
     packages:
-    - g++-4.8
+      - g++-4.8
+cache:
+  directories:
+    - node_modules

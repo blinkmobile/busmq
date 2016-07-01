@@ -1,37 +1,9 @@
 {
   "name": "@blinkmobile/busmq",
-  "version": "1.0.0",
   "description": "a minimal service exposing a federated BusMQ bus with publishing via HTTP",
-  "main": "index.js",
-  "scripts": {
-    "ava": "nyc --no-cache ava --no-cache",
-    "eslint": "eslint --fix --cache .",
-    "nyc": "nyc check-coverage --branches 50 --functions 80 --lines 80 --statements 80",
-    "posttest": "npm run eslint",
-    "start": "pm2 start ecosystem.json",
-    "stop": "pm2 stop ecosystem.json; pm2 kill",
-    "test": "npm run ava"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/blinkmobile/busmq.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "BSD-3-Clause",
+  "version": "1.0.0",
   "bugs": {
     "url": "https://github.com/blinkmobile/busmq/issues"
-  },
-  "homepage": "https://github.com/blinkmobile/busmq#readme",
-  "devDependencies": {
-    "ava": "^0.15.2",
-    "eslint": "^2.2.0",
-    "eslint-config-standard": "^5.1.0",
-    "eslint-plugin-promise": "^1.0.8",
-    "eslint-plugin-standard": "^1.3.2",
-    "node-fetch": "^1.5.2",
-    "nyc": "^6.4.4",
-    "sinon": "^1.17.4"
   },
   "dependencies": {
     "boom": "3.2.2",
@@ -42,5 +14,46 @@
     "inert": "4.0.0",
     "letsencrypt-express": "1.1.5",
     "pm2": "1.1.3"
+  },
+  "devDependencies": {
+    "ava": "^0.15.2",
+    "eslint": "^2.2.0",
+    "eslint-config-semistandard": "^6.0.2",
+    "eslint-config-standard": "^5.1.0",
+    "eslint-plugin-promise": "^1.0.8",
+    "eslint-plugin-standard": "^1.3.2",
+    "fixpack": "^2.3.1",
+    "node-fetch": "^1.5.2",
+    "nyc": "^6.4.4",
+    "sinon": "^1.17.4"
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "engines": {
+    "node": ">=6",
+    "npm": ">=3"
+  },
+  "homepage": "https://github.com/blinkmobile/busmq#readme",
+  "keywords": [],
+  "license": "BSD-3-Clause",
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blinkmobile/busmq.git"
+  },
+  "scripts": {
+    "ava": "nyc --no-cache ava --no-cache",
+    "eslint": "eslint --fix --cache .",
+    "fixpack": "fixpack",
+    "nyc": "nyc check-coverage --branches 50 --functions 80 --lines 80 --statements 80",
+    "posttest": "npm run eslint && npm run fixpack",
+    "start": "pm2 start ecosystem.json",
+    "stop": "pm2 stop ecosystem.json; pm2 kill",
+    "test": "npm run ava"
   }
 }

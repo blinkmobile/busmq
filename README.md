@@ -1,8 +1,6 @@
-# blinkmobile / busmq
+# blinkmobile / busmq [![Build Status](https://travis-ci.org/blinkmobile/busmq.svg?branch=master)](https://travis-ci.org/blinkmobile/busmq)
 
 a minimal service exposing a federated BusMQ bus with publishing via HTTP
-
-[![Build Status](https://travis-ci.org/blinkmobile/busmq.svg?branch=master)](https://travis-ci.org/blinkmobile/busmq)
 
 - Docker image: https://hub.docker.com/r/blinkmobile/busmq/
 
