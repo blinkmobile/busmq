@@ -3,8 +3,8 @@ services:
   app:
     build: .
     ports:
-    - '80:3000'
-    - '443:3443'
+    - '80:80'
+    - '443:443'
     volumes:
     - ./plugins:/app/plugins
     - ./public:/app/public

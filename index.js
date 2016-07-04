@@ -5,8 +5,8 @@ const https = require('https');
 
 const Hapi = require('hapi');
 
-const HTTP_PORT = parseInt(process.env.HTTP_PORT, 10) || 3000;
-const HTTPS_PORT = parseInt(process.env.HTTPS_PORT, 10) || 3443;
+const HTTP_PORT = parseInt(process.env.HTTP_PORT, 10) || 80;
+const HTTPS_PORT = parseInt(process.env.HTTPS_PORT, 10) || 443;
 
 const server = new Hapi.Server();
 

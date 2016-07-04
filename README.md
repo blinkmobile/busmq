@@ -60,7 +60,7 @@ We **highly recommend** that you customise this value for production use.
 
 ### HTTP_PORT and HTTPS_PORT
 
-Specifies the ports to bind HTTP and HTTPS listeners to. Defaults to 3000 and 3443. Useful to change these for testing purposes.
+Specifies the ports to bind HTTP and HTTPS listeners to. Defaults to 80 and 443. Useful to change these for testing purposes.
 
 
 ### LETSENCRYPT_DOMAIN
