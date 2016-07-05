@@ -2,12 +2,15 @@ FROM node:6.1
 
 RUN ["mkdir", "-p", "/app/public"]
 
-ADD package.json /app/
+COPY examples/nginx/ /app/nginx/
+VOLUME /app/nginx
+
+COPY package.json /app/
 WORKDIR /app
 RUN npm install
 
-ADD plugins/ /app/plugins/
-ADD ecosystem.json index.js /app/
+COPY plugins/ /app/plugins/
+COPY ecosystem.json index.js /app/
 
 EXPOSE 80
 EXPOSE 443

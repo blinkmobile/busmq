@@ -1,20 +1,39 @@
 version: '2'
+
+# # uncomment for nginx
+# volumes:
+#   nginxconf:
+#     external: false
+
 services:
+
   app:
     build: .
     ports:
     - '80:80'
-    - '443:443'
+    links:
+    - redis:redis
     volumes:
     - ./plugins:/app/plugins
     - ./public:/app/public
     - ./ecosystem.json:/app/ecosystem.json
     - ./index.js:/app/index.js
-    depends_on:
-    - redis
+    # - nginxconf:/app/nginx/basic # uncomment for nginx
     environment:
 #    - LETSENCRYPT_DOMAIN=localhost
     - NODE_ENV=development
     - REDIS_PORT_6379_ADDR=redis
+
   redis:
     image: redis:3
+
+  # # use nginx in front of Node.js listener
+  # # comment out app.ports above, uncomment this section
+  # web:
+  #   image: nginx:1.10
+  #   ports:
+  #   - '80:80'
+  #   links:
+  #   - app:busmq
+  #   volumes:
+  #   - nginxconf:/etc/nginx/conf.d
