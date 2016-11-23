@@ -13,8 +13,7 @@
     "hapi": "13.4.1",
     "hapi-and-healthy": "4.4.2",
     "inert": "4.0.0",
-    "letsencrypt-express": "1.1.5",
-    "pm2": "1.1.3"
+    "letsencrypt-express": "1.1.5"
   },
   "devDependencies": {
     "ava": "^0.15.2",
@@ -53,8 +52,7 @@
     "fixpack": "fixpack",
     "nyc": "nyc check-coverage --branches 50 --functions 80 --lines 80 --statements 80",
     "posttest": "npm run eslint && npm run fixpack",
-    "start": "pm2 start ecosystem.json",
-    "stop": "pm2 stop ecosystem.json; pm2 kill",
+    "start": "node --trace-deprecation --trace-warnings ./index.js",
     "test": "npm run ava"
   }
 }

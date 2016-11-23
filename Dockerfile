@@ -10,7 +10,7 @@ WORKDIR /app
 RUN npm install
 
 COPY plugins/ /app/plugins/
-COPY ecosystem.json index.js /app/
+COPY index.js /app/
 
 EXPOSE 80
 EXPOSE 443

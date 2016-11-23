@@ -16,7 +16,6 @@ services:
     volumes:
     - ./plugins:/app/plugins
     - ./public:/app/public
-    - ./ecosystem.json:/app/ecosystem.json
     - ./index.js:/app/index.js
     # - nginxconf:/app/nginx/basic # uncomment for nginx
     environment:
